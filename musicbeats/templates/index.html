@@ -28,11 +28,11 @@
  <div class="row" style="padding-top: 2%; padding-left: 15%;" >
      {% for i in songs %}
      <div style ="padding-left:4%;padding-bottom:3%"> <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="{{ i.image }}" alt="Card image cap" style="height: 191px; width: 286px";>
+        <img class="card-img-top" src="/{{ i.image }}" alt="Card image cap" style="height: 191px; width: 286px";>
         <div class="card-body">
             <h5 class ='card-title'>{{ i.name }}</h5>
         <p class="card-text">{{ i.tags }}</p>
-               <a href="#" class="btn btn-outline-danger">Listen</a>
+               <a href="/musicbeats/song/{{ i.song_id }}" class="btn btn-outline-danger">Listen</a>
         </div>
      </div>
      </div>

@@ -1,10 +1,13 @@
 {% extends 'basic.html' %}
 
 
-{% block title %}Songs{% endblock %}
+{% block title %} History{% endblock %}
 
-{% block body %}
-   <div class ="container">
+
+ {% block body %}
+     {% load static %}
+
+      <div class ="container">
        {% for i in songs %}
     <div class="card mb-3", style="max-width: 940px; padding-top:3%;">
               <div class="row no-gutters">
@@ -23,6 +26,9 @@
      </div>
 
 {% endfor %}
-   </div>
+
 
 {% endblock %}
+
+
+

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here
@@ -13,3 +14,15 @@ class Song(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ListenLater(models.Model):
+    listen_id = models.BigAutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    audio_id = models.CharField(max_length=100000, default='')
+
+
+class History(models.Model):
+    his_id = models.BigAutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    audio_id = models.CharField(max_length=100000, default='')

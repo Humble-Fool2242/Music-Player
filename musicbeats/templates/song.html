@@ -3,24 +3,55 @@
 
 {% block title %}{{ song.name }}{% endblock %}
 
+
 {% block body %}
-    <div class ="container">
 
-    <div class="card mb-3", style="max-width: 940px; padding-top:3%;">
-              <div class="row no-gutters">
-                  <div class="col md-4">
-                    <img src="/{{ i.image }}" class="card-img" style="height: 264px; width :469px;" >
-                  </div>
-                  <div class="col md-8">
-                      <div class="'card-body" style="padding-left:5%;">
-                          <h5 class = "card-title" style ="color:gold ; font-weight: bold;">{{ i.name }}</h5>
-                          <p class="card-text" >{{ i.tags }}</p>
-                          <a href=" "><button class="btn btn-outline-danger">Listen Song</button></a>
-                      </div>
-                  </div>
-              </div>
-     </div>
+    {% if context.message %}
+        <script>
+          Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title:'{{context.message}}',
+          showConfirmButton: false,
+          timer: 1500
+          })
+       </script>
 
+    {% endif %}
+
+
+    <div style ="background-image:url('https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg');
+  /* Full height */
+  height: 700px; width: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+">
+<div class ="container">
+           <div class="row" >
+               <div class="col-md-6" style="padding-top:3%;">
+                   <img src="/{{song.image}}" alt="cover pic" width="500px" height="350px">
+               </div>
+               <div class="col-md-6" style="padding-top:3%;">
+                   <h2 style="padding-left: 15%; color: gold; font-weight:bolder;">{{song.name}}</h2>
+                   <h5 style="padding-left: 15%;">({{song.tags}})</h5>
+                   <h5 style="padding-left: 15%;">{{song.singer.title}}</h5>
+                   <audio controls style="padding-top: 2%; padding-left: 5%" preload="auto">
+                       <source src="/{{ song.song }}" type="audio/mp3">
+                   </audio>
+                   <div class="container" style="padding-top:3%;padding-left:5% ">
+                       <form action="/musicbeats/song/{{song.song_id}}" method="POST">{% csrf_token%}
+                           <button type="submit" class="btn btn-outline-danger">Listen Later</button>
+                       </form>
+
+                   </div>
+
+               </div>
+
+           </div>
+       </div>
    </div>
 
 {% endblock %}

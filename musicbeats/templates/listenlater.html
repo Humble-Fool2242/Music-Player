@@ -1,0 +1,43 @@
+{% extends 'basic.html' %}
+
+{% block title %}ListenLater{% endblock %}
+
+  {% block body %}
+      {% load static %}
+      <h1 style="text-align: center;color: red">Saved Songs</h1>
+       <div class ="container">
+
+
+       {% for i in saved_songs %}
+    <div class="card mb-3", style="max-width: 940px; padding-top:3%;">
+              <div class="row no-gutters">
+              <div class="col md-4">
+                <img src="/{{ i.image }}" class="card-img" style="height: 264px; width :469px;" >
+              </div>
+              <div class="col md-8">
+                  <div class="'card-body" style="padding-left:5%;">
+                      <h5 class = "card-title" style ="color:gold ; font-weight: bold;">{{ i.name }}</h5>
+                      <p class="card-text" >{{ i.tags }}</p>
+
+                      <div>
+                          <a href="/musicbeats/song/{{ i.song_id }}" style ="display:inline"><button class="btn btn-outline-danger">Listen Song</button></a>
+                      <form method="POST" action="/musicbeats/listenlater" style ="display:inline"> {% csrf_token %}
+                          <input type="hidden" name="song_id" value = "{{ i.song_id }}">
+                          <a type="submit"><button class="btn btn-outline-danger">Remove Song</button></a>
+                      </form>
+                      </div>
+
+
+                  </div>
+
+              </div>
+              </div>
+     </div>
+           {% empty %}
+           <h1> Nothing to show Here </h1>
+           <button class="btn btn-outline-danger" onclick="location.href='/musicbeats/songs'">Add Song</button>
+{% endfor %}
+       </div>
+
+
+ {% endblock %}
